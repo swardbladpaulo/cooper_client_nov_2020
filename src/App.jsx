@@ -1,8 +1,11 @@
+/* eslint-disable default-case */
+/* eslint-disable no-undef */
 import React, { Component } from "react";
+
 import DisplayCooperResult from "./components/DisplayCooperResult";
 import InputFields from "./components/InputFields";
-import LoginForm from './components/LoginForm';
-import { authenticate } from './modules/auth';
+import LoginForm from "./components/LoginForm";
+import { authenticate } from "./modules/auth";
 
 class App extends Component {
   state = {
@@ -11,14 +14,14 @@ class App extends Component {
     age: "",
     renderLoginForm: false,
     authenticated: false,
-    message: ""
+    message: "",
   };
 
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onLogin = async e => {
+  onLogin = async (e) => {
     e.preventDefault();
     const response = await authenticate(
       e.target.email.value,
@@ -34,8 +37,7 @@ class App extends Component {
   render() {
     const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
-    // eslint-disable-next-line
-    switch(true) {
+    switch (true) {
       case renderLoginForm && !authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
@@ -48,30 +50,27 @@ class App extends Component {
             >
               Login
             </button>
-            <p>{message}</p>
+            <p id="message">{message}</p>
           </>
         );
         break;
       case authenticated:
         renderLogin = (
-          <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+          <p id="message">Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
         );
         break;
-    };
-
-      return (
+    }
+    return (
       <>
         <InputFields onChangeHandler={this.onChangeHandler} />
-        {renderLogin}
         <DisplayCooperResult
           distance={this.state.distance}
           gender={this.state.gender}
           age={this.state.age}
         />
+        {renderLogin}
       </>
     );
   }
 }
-
 export default App;
-
