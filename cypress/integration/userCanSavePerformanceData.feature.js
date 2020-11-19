@@ -35,17 +35,16 @@ describe("User attempts save data", () => {
     cy.get("#response-message").should("contain", "Your entry was saved")
   });
 
-  it("can save two different entries", () => {
+ it("can save two different entries", () => {
     cy.get("input#distance").type("1000");
     cy.get("select#gender").select("female");
     cy.get("input#age").type("23");
-    
     cy.get("#save-result").click();
     cy.get("#response-message").should("contain", "Your entry was saved")
     cy.get("input#distance")
       .clear()
       .type("1500");
-      cy.get("#save-result").click();
+    cy.get("#save-result").click();
     cy.get("#response-message").should("contain", "Your entry was saved")
   });
 });

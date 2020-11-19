@@ -18,9 +18,10 @@ class App extends Component {
     entrySaved: false,
   };
 
-  onChangeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChangeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value, entrySaved: false });
   };
+  
 
   onLogin = async (e) => {
     e.preventDefault();
