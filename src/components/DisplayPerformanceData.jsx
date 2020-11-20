@@ -1,47 +1,67 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { getData } from "../modules/performanceData";
+import { Line } from "react-chartjs-2";
 
 class DisplayPerformanceData extends Component {
   state = {
-    performanceData: null
-  }
+    performanceData: null,
+  };
 
   componentDidMount() {
-    this.getPerformanceData()
+    this.getPerformanceData();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.updateIndex !== prevProps.updateIndex) {
-      this.getPerformanceData()
+      this.getPerformanceData();
     }
   }
 
   async getPerformanceData() {
     let result = await getData();
-    this.setState({performanceData: result.data.entries}, () => {
+    this.setState({ performanceData: result.data.entries }, () => {
       this.props.indexUpdated();
-    })
+    });
   }
 
-  render () {
-    let dataIndex;
+  render() {
+    let graph;
+    let distances = [];
+    let labels = [];
 
     if (this.state.performanceData != null) {
-      dataIndex = (
-        <div>
-          {this.state.performanceData.map(item => {
-            return <div key={item.id}>{item.data.message}</div>
-          })}
-        </div>
-      )
+      this.state.performanceData.forEach((entry) => {
+        distances.push(entry.data.distance)
+        labels.push(entry.data.message)
+      });
+      
+      // (
+      //   <div>
+      //     {this.state.performanceData.map((item) => {
+      //       return (
+      //         <div key={item.id}>
+      //           <p>{item.data.message}</p>
+      //           <p>{item.data.age}</p>
+      //           <p>{item.data.distance}</p>
+      //         </div>
+      //       );
+      //     })}
+      //   </div>
+      // );
     }
 
-    return (
-      <div>
-        {dataIndex}
-      </div>
-    )
-  }      
+    const data = {
+      labels: labels,
+      datasets: [ {
+        label: "Previous results",
+        data: distances
+      }],
+    }
+
+    graph = <Line data={data}/>;
+
+    return <div id="index">{graph}</div>;
+  }
 }
 
 export default DisplayPerformanceData;
