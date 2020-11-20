@@ -6,7 +6,7 @@ import DisplayCooperResult from "./components/DisplayCooperResult";
 import InputFields from "./components/InputFields";
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./modules/auth";
-import { performanceDataIndex } from './components/DisplayPerformanceData';
+
 
 class App extends Component {
   state = {
@@ -39,7 +39,8 @@ class App extends Component {
 
   render() {
     const { renderLoginForm, authenticated, message } = this.state;
-    let renderLogin;
+    let renderLogin, performanceDataIndex;
+
     switch (true) {
       case renderLoginForm && !authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
@@ -59,11 +60,15 @@ class App extends Component {
         break;
         case authenticated:
           renderLogin = (
-            <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+            <p id="message">Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
           );
+         
           performanceDataIndex = (
             <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
-          )     
+          ) 
+          // if (this.state.renderIndex) {
+          //   debugger
+          // }    
           break;
     }
     return (
@@ -77,7 +82,8 @@ class App extends Component {
           entrySaved={this.state.entrySaved}
           entryHandler={() => this.setState({ entrySaved: true, updateIndex: true })}
           />
-        {/* {renderLogin} */}
+        {renderLogin}
+        {performanceDataIndex}
       </>
     );
   }
