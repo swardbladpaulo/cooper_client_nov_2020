@@ -1,18 +1,25 @@
 import React from "react";
+import Containers from './Container';
 
 const InputFields = ({ onChangeHandler }) => {
   return (
     <>
-      <label>Distance</label>
-      <input onChange={onChangeHandler} name="distance" id="distance"></input>
+      <Containers>
+        <label style={{fontSize:20, fontWeight:'bold'}}> Distance</label><br/>
+        <input onChange={onChangeHandler} name="distance" id="distance"></input>
+      </Containers>
 
-      <select onChange={onChangeHandler} name="gender" id="gender">
-        <option value="female">Female</option>
-        <option value="male">Male</option>
-      </select>
+      <Containers>
+        <select onChange={onChangeHandler} name="gender" id="gender">
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+      </Containers>
 
-      <label>Age</label>
-      <input onChange={onChangeHandler} name="age" id="age"></input>
+      <Containers>
+        <label style={{fontSize:20, fontWeight:'bold'}}>Age</label><br/>
+          <input onChange={onChangeHandler} name="age" id="age"></input>
+      </Containers>
     </>
   );
 };

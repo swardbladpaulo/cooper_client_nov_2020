@@ -1,18 +1,28 @@
 import React from "react";
-
-
+import Containers from "./Container";
+import { Button, Input } from "semantic-ui-react";
 
 const LoginForm = ({ submitFormHandler }) => {
   return (
-    /*<LoginForm submitFormHandler={this.onLogin} />*/
+  /*<LoginForm submitFormHandler={this.onLogin} />*/
+    <>
+      <h1>Hello and welcome</h1>
     <form onSubmit={submitFormHandler} id="login-form">
-      <label>Email</label>
-      <input name="email" type="email" id="email"></input>
+      <Containers>
+        <label style={{ fontSize: 20, fontWeight: "bold" }}>Email </label>
+        <Input name="email" type="email" id="email"></Input>
+      </Containers>
 
-      <label>Password</label>
-      <input name="password" type="password" id="password"></input>
-      <button id="submit">Submit</button>
-    </form>
+      <Containers>
+        <label style={{ fontSize: 20, fontWeight: "bold" }}>Password </label>
+        <Input name="password" type="password" id="password" placeholder='put in your password'></Input>
+      </Containers>
+      <br />
+      <Button color="red" id="submit">
+        Submit
+      </Button>
+      </form>
+    </>
   );
 };
 
