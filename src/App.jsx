@@ -6,7 +6,7 @@ import InputFields from "./components/InputFields";
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./modules/auth";
 import DisplayPerformanceData from "./components/DisplayPerformanceData";
-import { Button, Container, Image } from "semantic-ui-react";
+import { Button, Container } from "semantic-ui-react";
 import Containers from "./components/Container";
 
 class App extends Component {
@@ -48,10 +48,18 @@ class App extends Component {
       case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
-            <h1>Log in to register your results</h1>
+            <label style={{ fontSize: 40, fontWeight: "bold", color: "white" }}>
+              Welcome to our Cooper Test
+              <br />
+              <br />
+              Please Log in to register your results
+            </label>
+            <br />
+            <br />
             <Button
-              color="red"
+              color="orange"
               id="login"
+              size="huge"
               onClick={() => this.setState({ renderLoginForm: true })}
             >
               Login
@@ -105,9 +113,9 @@ class App extends Component {
       <>
         {!renderLoginForm && !authenticated && (
           <div
-            className="hello"
+            className="appimage"
             style={{
-              background: 'url("./data/images/slussen.jpeg")',
+              background: 'url("./data/images/trackandfield1.jpg")',
               backgroundSize: "cover",
               height: "120vh",
             }}

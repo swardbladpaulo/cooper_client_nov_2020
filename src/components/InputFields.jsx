@@ -1,11 +1,12 @@
 import React from "react";
-import Containers from './Container';
+import Containers from "./Container";
 
 const InputFields = ({ onChangeHandler }) => {
   return (
     <>
       <Containers>
-        <label style={{fontSize:20, fontWeight:'bold'}}> Distance</label><br/>
+        <label style={{ fontSize: 20, fontWeight: "bold" }}> Distance</label>
+        <br />
         <input onChange={onChangeHandler} name="distance" id="distance"></input>
       </Containers>
 
@@ -17,8 +18,9 @@ const InputFields = ({ onChangeHandler }) => {
       </Containers>
 
       <Containers>
-        <label style={{fontSize:20, fontWeight:'bold'}}>Age</label><br/>
-          <input onChange={onChangeHandler} name="age" id="age"></input>
+        <label style={{ fontSize: 20, fontWeight: "bold" }}>Age</label>
+        <br />
+        <input onChange={onChangeHandler} name="age" id="age"></input>
       </Containers>
     </>
   );
