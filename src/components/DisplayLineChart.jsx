@@ -18,7 +18,7 @@ const DisplayLineChart = ({ performanceData }) => {
     labels: Object.keys(lineData),
     datasets: [
       {
-        label: "# of Votes",
+        label: "# of Tests",
         data: Object.values(lineData),
         fill: false,
         backgroundColor: "rgba(17,131,138)",

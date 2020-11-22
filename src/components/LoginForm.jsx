@@ -4,9 +4,8 @@ import { Button, Input } from "semantic-ui-react";
 
 const LoginForm = ({ submitFormHandler }) => {
   return (
-    /*<LoginForm submitFormHandler={this.onLogin} />*/
     <>
-      <label style={{ fontSize: 40, color: "red"}}>Hello and welcome</label>
+      <label style={{ fontSize: 40, color: "red" }}>Hello and welcome</label>
       <form onSubmit={submitFormHandler} id="login-form">
         <Containers>
           <label style={{ fontSize: 20, fontWeight: "bold" }}>Email </label>

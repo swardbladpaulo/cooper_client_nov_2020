@@ -6,23 +6,23 @@ describe("User attempts save data", () => {
       url: "http://localhost:3000/api/v1/auth/sign_in",
       response: "fixture:login.json",
       headers: {
-        uid: "user@mail.com"
-      }
+        uid: "user@mail.com",
+      },
     });
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/performance_data",
       response: {},
       headers: {
-        uid: "user@mail.com"
-      }
+        uid: "user@mail.com",
+      },
     });
     cy.visit("/");
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get('#submit').contains('Submit').click()
+      cy.get("#submit").contains("Submit").click();
     });
   });
 
@@ -31,7 +31,7 @@ describe("User attempts save data", () => {
     cy.get("select#gender").select("female");
     cy.get("input#age").type("23");
     cy.get("#save-result").click();
-    cy.get("#response-message").should("contain", "Your entry was saved")
+    cy.get("#response-message").should("contain", "Your entry was saved");
   });
 
   it("can save two different entries", () => {
@@ -39,11 +39,9 @@ describe("User attempts save data", () => {
     cy.get("select#gender").select("female");
     cy.get("input#age").type("23");
     cy.get("#save-result").click();
-    cy.get("#response-message").should("contain", "Your entry was saved")
-    cy.get("input#distance")
-      .clear()
-      .type("1500");
+    cy.get("#response-message").should("contain", "Your entry was saved");
+    cy.get("input#distance").clear().type("1500");
     cy.get("#save-result").click();
-    cy.get("#response-message").should("contain", "Your entry was saved")
+    cy.get("#response-message").should("contain", "Your entry was saved");
   });
 });

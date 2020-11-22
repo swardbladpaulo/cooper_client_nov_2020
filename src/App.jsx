@@ -106,9 +106,7 @@ class App extends Component {
           );
         }
     }
-    // break;
-    // default:
-    // break;
+
     return (
       <>
         {!renderLoginForm && !authenticated && (

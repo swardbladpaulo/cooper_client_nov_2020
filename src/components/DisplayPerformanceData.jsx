@@ -26,7 +26,8 @@ class DisplayPerformanceData extends Component {
   }
 
   render() {
-    return ( <div> <DisplayDoughnutChart performanceData={this.state.performanceData}/>
+    return ( <div> <h1>Doughnut chart</h1><DisplayDoughnutChart performanceData={this.state.performanceData}/>
+    <h1>Line chart</h1>
     <DisplayLineChart performanceData={this.state.performanceData}/>
     </div>
   )}
