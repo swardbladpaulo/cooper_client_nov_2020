@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { getData } from "../modules/performanceData";
 import DisplayDoughnutChart from "../components/DisplayDoughnutChart";
+import DisplayLineChart from "../components/DisplayLineChart"
+
 class DisplayPerformanceData extends Component {
   state = {
     performanceData: null,
@@ -24,8 +26,10 @@ class DisplayPerformanceData extends Component {
   }
 
   render() {
-    return <DisplayDoughnutChart performanceData={this.state.performanceData}/>
-  }
+    return ( <div> <DisplayDoughnutChart performanceData={this.state.performanceData}/>
+     <DisplayLineChart performanceData={this.state.performanceData}/>
+     </div>
+  )}
 }
 
 export default DisplayPerformanceData;

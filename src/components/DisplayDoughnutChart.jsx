@@ -1,7 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
-const DisplayDoughnutChart = ({performanceData}) => {
+const DisplayDoughnutChart = ({ performanceData }) => {
   const doughnutData = {};
 
   if (performanceData != null) {
@@ -33,7 +33,6 @@ const DisplayDoughnutChart = ({performanceData}) => {
   let doughnut = <Doughnut data={data} />;
 
   return <div id="index">{doughnut}</div>;
+};
 
-}
-
-export default DisplayDoughnutChart
+export default DisplayDoughnutChart;
