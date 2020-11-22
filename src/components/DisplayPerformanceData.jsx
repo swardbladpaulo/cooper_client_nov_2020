@@ -25,46 +25,38 @@ class DisplayPerformanceData extends Component {
   }
 
   render() {
-    let graph;
-    let distances = [];
-    let labels = [];
+    const doughnutData = {};
 
     if (this.state.performanceData != null) {
       this.state.performanceData.forEach((entry) => {
-        distances.push(entry.data.distance);
-        labels.push(entry.data.message);
+        let label = entry.data.message;
+        if (doughnutData[label] == null) {
+          doughnutData[label] = 0;
+        }
+        doughnutData[label] += 1;
       });
     }
 
     const data = {
-      labels: labels,
+      labels: Object.keys(doughnutData),
       datasets: [
         {
-          // label: "Fitness level",
-          data: distances,
+          data: Object.values(doughnutData),
+          backgroundColor: [
+            "rgba(205, 92, 92)",
+            "rgba(240, 128, 128)",
+            "rgba(250, 128, 114)",
+            "rgba(233, 150, 122)",
+            "rgba(255, 160, 122)",
+          ],
         },
       ],
     };
 
-    graph = <Doughnut data={data} />;
+    let doughnut = <Doughnut data={data} />;
 
-    return <div id="index">
-    <h1 className='title'>Accumulated test results</h1>{graph}</div>;
+    return <div id="index"><h1>Accumulated results</h1>{doughnut}</div>;
   }
 }
 
 export default DisplayPerformanceData;
-
-// (
-//   <div>
-//     {this.state.performanceData.map((item) => {
-//       return (
-//         <div key={item.id}>
-//           <p>{item.data.message}</p>
-//           <p>{item.data.age}</p>
-//           <p>{item.data.distance}</p>
-//         </div>
-//       );
-//     })}
-//   </div>
-// );
